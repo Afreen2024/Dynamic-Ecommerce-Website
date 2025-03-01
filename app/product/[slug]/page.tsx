@@ -57,15 +57,20 @@
 //   );
 // }
 ////////////////////////////////////////////////////////////////////
-import { client } from "@/sanity/lib/client";
+
+import { client } from "@/sanity/lib/client"; 
 import { Product } from "@/types/products";
 import { groq } from "next-sanity";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { notFound } from "next/navigation";
 
+// NextPageContext سے params کو import کریں
+import { NextPageContext } from 'next';
+
+// ProductPageProps کی type کو define کریں
 interface ProductPageProps {
-  params: { slug: string }; // Corrected type for params
+  params: { slug: string };
 }
 
 // Fetch the product by slug
@@ -90,7 +95,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
   // Handle case where product is not found
   if (!product) {
     notFound(); // Renders a 404 page
-    return; // Ensure the function stops after notFound is called
   }
 
   return (
@@ -116,4 +120,3 @@ export default async function ProductPage({ params }: ProductPageProps) {
     </div>
   );
 }
-
